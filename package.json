@@ -1,0 +1,61 @@
+{
+  "name": "documenter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "dev": "nodemon src/docs-api/server.ts",
+    "prepare": "husky install",
+    "lint:schema": "ts-node --transpile-only src/scripts/validate-schema-glossary.ts",
+    "check-zod": "ts-node --transpile-only src/scripts/validate-zod-schema.ts",
+    "lint": "eslint . --ext .ts && npm run lint:schema && npm run check-zod",
+    "start": "ts-node src/docs-api/server.ts",
+    "start:dev": "nodemon --watch src --exec ts-node src/docs-api/server.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@asteasolutions/zod-to-openapi": "^7.3.4",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "express-openid-connect": "^2.18.1",
+    "fast-glob": "^3.3.3",
+    "i": "^0.3.7",
+    "jwt-decode": "^4.0.0",
+    "lodash.clonedeep": "^4.5.0",
+    "npm": "^11.4.2",
+    "swagger-ui-express": "^5.0.1",
+    "ts-morph": "^26.0.0",
+    "zod": "^3.25.67"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.29.0",
+    "@types/express": "^5.0.3",
+    "@types/jest": "^30.0.0",
+    "@types/lodash.clonedeep": "^4.5.9",
+    "@types/node": "^24.0.3",
+    "@types/swagger-ui-express": "^4.1.8",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
+    "eslint": "^8.57.1",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-perfectionist": "^4.15.0",
+    "eslint-plugin-unused-imports": "^4.1.4",
+    "husky": "^8.0.0",
+    "jest": "^30.0.2",
+    "nodemon": "^3.1.10",
+    "openapi3-ts": "^4.4.0",
+    "ts-jest": "^29.4.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.34.1"
+  },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "npm run lint",
+      "npm run check-zod"
+    ]
+  }
+}
